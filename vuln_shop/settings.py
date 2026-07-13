@@ -18,15 +18,10 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-if os.environ.get('RENDER'):
-    DB_PATH = os.path.join('/data', 'db.sqlite3')
-else:
-    DB_PATH = BASE_DIR / 'db.sqlite3'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': DB_PATH,
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

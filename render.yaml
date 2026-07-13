@@ -2,6 +2,7 @@ services:
   - type: web
     name: vuln-shop-lab
     runtime: python
+    plan: free
     buildCommand: "./build.sh"
     startCommand: "python cargar_datos.py && gunicorn vuln_shop.wsgi:application"
     envVars:
@@ -9,7 +10,3 @@ services:
         value: 3.11.5
       - key: DJANGO_SETTINGS_MODULE
         value: vuln_shop.settings
-    disk:
-      name: sqlite-db-data
-      mountPath: /data
-      sizeGB: 0.5
