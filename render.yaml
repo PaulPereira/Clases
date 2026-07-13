@@ -12,4 +12,4 @@ services:
     disk:
       name: sqlite-db-data
       mountPath: /data
-      sizeMB: 512
+      sizeGB: 0.5
