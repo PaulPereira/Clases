@@ -1,12 +1,17 @@
+# Exported from Render on 2026-07-13T05:14:06Z
+version: "1"
 services:
-  - type: web
-    name: vuln-shop-lab
-    runtime: python
-    plan: free
-    buildCommand: "./build.sh"
-    startCommand: "python cargar_datos.py && gunicorn vuln_shop.wsgi:application"
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.11.5
-      - key: DJANGO_SETTINGS_MODULE
-        value: vuln_shop.settings
+- type: web
+  name: vuln-shop-lab-qqj2
+  runtime: python
+  repo: https://github.com/PaulPereira/Clases
+  plan: free
+  envVars:
+  - key: DJANGO_SETTINGS_MODULE
+    sync: false
+  - key: PYTHON_VERSION
+    sync: false
+  region: oregon
+  buildCommand: ./build.sh
+  startCommand: python cargar_datos.py && gunicorn vuln_shop.wsgi:application
+  autoDeployTrigger: commit
