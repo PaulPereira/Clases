@@ -1,0 +1,77 @@
+{% extends 'shop/base.html' %}
+{% block title %}Catálogo | GadgetShop{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Estilos para los botones de la paginación */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 3rem 0;
+    }
+    .pagination a, .pagination .current-page {
+        padding: 0.5rem 1rem;
+        border: 1px solid #cbd5e1;
+        text-decoration: none;
+        color: var(--text);
+        border-radius: 0.25rem;
+        font-weight: 500;
+    }
+    .pagination a:hover {
+        background-color: var(--primary);
+        color: var(--white);
+        border-color: var(--primary);
+    }
+    .pagination .current-page {
+        background-color: #f1f5f9;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Nuestro Catálogo Completo ({{ page_obj.paginator.count }} Productos)</h2>
+    <p style="color: var(--text-muted);">Mostrando productos del {{ page_obj.start_index }} al {{ page_obj.end_index }}</p>
+    
+    <div class="products-grid">
+        {% for producto in page_obj %}
+        <div class="product-card">
+            <div class="product-img"><i class="fa-solid {{ producto.icono }}"></i></div>
+            <div class="product-info">
+                <span class="product-category" style="font-size: 0.7rem; color: var(--primary); font-weight: bold;">{{ producto.categoria }}</span>
+                <h3 style="font-size: 1rem; margin: 0.25rem 0;">{{ producto.nombre }}</h3>
+                <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.75rem; height: 35px; overflow: hidden;">
+                    {{ producto.descripcion }}
+                </p>
+                <button class="btn-cart" style="font-size: 0.9rem;">
+                    {% if producto.es_oferta %}
+                        {{ producto.precio_oferta }} €
+                    {% else %}
+                        {{ producto.precio }} €
+                    {% endif %}
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Primero</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+
+        <span class="current-page">
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Último &raquo;</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

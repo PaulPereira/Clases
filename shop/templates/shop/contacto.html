@@ -1,0 +1,16 @@
+{% extends 'shop/base.html' %}
+{% block title %}Contacto | GadgetShop{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 600px;">
+    <h2>Formulario de Contacto</h2>
+    <p style="margin-bottom: 2rem; color: var(--text-muted);">¿Tienes alguna duda? Escríbenos.</p>
+    
+    <form style="display: flex; flex-direction: column; gap: 1rem;">
+        <input type="text" placeholder="Tu Nombre" style="padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.25rem;">
+        <input type="email" placeholder="Tu Correo Electrónico" style="padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.25rem;">
+        <textarea placeholder="Mensaje" rows="5" style="padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.25rem; font-family: inherit;"></textarea>
+        <button type="button" class="btn" style="border: none; text-align: center;">Enviar Mensaje</button>
+    </form>
+</div>
+{% endblock %}

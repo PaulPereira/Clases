@@ -1,0 +1,29 @@
+{% extends 'shop/base.html' %}
+{% block title %}Ofertas | GadgetShop{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 style="color: #dc2626;"><i class="fa-solid fa-fire"></i> Ofertas Flash del Día</h2>
+    <p>Los mejores precios, solo por tiempo limitado.</p>
+    
+    <div class="products-grid">
+        {% for producto in productos %}
+        <div class="product-card" style="border: 2px solid var(--accent);">
+            <div class="product-img" style="background-color: #fef3c7;">
+                <i class="fa-solid {{ producto.icono }}" style="color: var(--accent);"></i>
+            </div>
+            <div class="product-info">
+                <span class="product-category">{{ producto.categoria }}</span>
+                <h3>{{ producto.nombre }}</h3>
+                <p style="text-decoration: line-through; color: red;">{{ producto.precio }} €</p>
+                <button class="btn-cart" style="background-color: var(--accent); color: black;">
+                    ¡Ahora {{ producto.precio_oferta }} €!
+                </button>
+            </div>
+        </div>
+        {% empty %}
+        <p>No hay ofertas disponibles en este momento.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

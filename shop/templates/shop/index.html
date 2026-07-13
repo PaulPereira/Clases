@@ -1,0 +1,33 @@
+{% extends 'shop/base.html' %}
+{% block title %}Inicio | GadgetShop{% endblock %}
+
+{% block content %}
+<header class="hero">
+    <h1>La Mejor Tecnología al Alcance de tu Mano</h1>
+    <p>Descuentos exclusivos en dispositivos seleccionados durante toda la semana.</p>
+    <br>
+    <a href="{% url 'productos' %}" class="btn">Explorar Catálogo</a>
+</header>
+<div class="container">
+    <h2>Productos Destacados</h2>
+    <div class="products-grid">
+        {% for producto in productos %}
+        <div class="product-card">
+            <div class="product-img"><i class="fa-solid {{ producto.icono }}"></i></div>
+            <div class="product-info">
+                <span class="product-category">{{ producto.categoria }}</span>
+                <h3 class="product-title">{{ producto.nombre }}</h3>
+                <div class="product-price">
+                    {% if producto.es_oferta %}
+                        {{ producto.precio_oferta }} €
+                    {% else %}
+                        {{ producto.precio }} €
+                    {% endif %}
+                </div>
+                <button class="btn-cart">Añadir al carrito</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
